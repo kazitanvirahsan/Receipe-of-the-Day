@@ -14,7 +14,7 @@ use Receipe\Common\DateFunc;
 
 try {
     $reader_obj = new JsonFileReader();
-    $receipes = $reader_obj->load();
+    $receipes = $reader_obj->load($receipes_json);
 }
 catch(Exception $e) {
     echo $e->getMessage();
@@ -23,14 +23,15 @@ catch(Exception $e) {
 
 try {
     $reader_obj = new CsvFileReader();
-    $fridge = $reader_obj->load();
+    $fridge = $reader_obj->load($fridge_csv);
 }
 catch(Exception $e) {
     echo $e->getMessage();
     exit(0);
 }
 
+
 $cook_obj = new Cook();
-$cook_obj->setFridge(new Fridge($fridge))->setReceipe(new Receipe($receipes))->lookup();
+$cook_obj->setFridge(new Fridge($fridge))->setReceipe(new Receipe($receipes));
 
 echo $cook_obj->whatToCook();
