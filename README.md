@@ -43,3 +43,7 @@ echo $cook_obj->whatToCook();
 
 
 ```
+
+
+# Run the index.php file from command prompt:
+php index.php fridge.csv receipes.json
