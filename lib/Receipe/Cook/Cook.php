@@ -42,6 +42,7 @@ class Cook
     
     /**
      * list of receipes whose ingredients are available in the Fridge
+     * It will populate $this->tonight_recps as Array
      * @return Receipe\Cook\Cook
      */
     public function lookup() {
@@ -91,10 +92,21 @@ class Cook
      * @return String
      */
     public function whatToCook() {
-        $recp_today = $this->tonight_recps;
+        
+        $this->lookup();
+       
+        // if no receipe is found then return Order Takeoue
+        if(empty($this->tonight_recps)) return 'Order Takeout';
+
+        // if more than one menu to cook we choose only one based one closest use by date
         if (count($this->tonight_recps) > 1) {
-            $recp_today = $this->getReceipeWithClosestUseBy();
-        }
-        return isset($recp_today) ? $recp_today['name'] : 'Order Takeout';
+            $recp_arr = $this->getReceipeWithClosestUseBy();
+            return $recp_arr['name'];
+        } 
+
+        // Or just print what is in the $this->tonight_recps 
+        $recp_today = array_pop($this->tonight_recps);
+        return $recp_today['name'];
+    
     }
 }
