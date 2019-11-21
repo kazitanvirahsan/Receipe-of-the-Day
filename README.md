@@ -119,8 +119,7 @@ Please see the problem statement file (DevCodingTest-RecipeFinder.pdf) for more 
 
 Press 'Enter'. 
 
-You should able to see 'salad sandwich' as the expected output of the program. 
-
+You should be able to see 'salad sandwich' as the expected output of the program.
 
 ## Authors
 
